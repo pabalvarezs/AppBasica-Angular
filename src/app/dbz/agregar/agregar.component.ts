@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interface';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-agregar',
@@ -7,11 +8,13 @@ import { Personaje } from '../interfaces/dbz.interface';
 })
 export class AgregarComponent  {
 
-  @Input() nuevo :Personaje = {
+  @Input('data') nuevo :Personaje = {
     nombre : '',
     poder : 0
   };
-  @Output() onNuevoPersonaje : EventEmitter<Personaje> = new EventEmitter();
+  // @Output() onNuevoPersonaje : EventEmitter<Personaje> = new EventEmitter();
+
+  constructor(private dbzservice : DbzService){}    //inyectamos el servicio o dependencia
 
   agregar( ){              //  agregar( event :any )
     // event.preventDefault();        //previene el comportamiento por defecto del evento que recibimos
@@ -21,12 +24,16 @@ export class AgregarComponent  {
       return;
     }
 
-    this.onNuevoPersonaje.emit( this.nuevo );
+    this.dbzservice.agregarPersonaje(this.nuevo);
+
+    // this.onNuevoPersonaje.emit( this.nuevo );
     // INICIALIZAMOS VACIO UNA VEZ CARGADO AL ARREGLO
     this.nuevo = {
       nombre : '',
       poder : 0
     }
+
+
   
   }
 

@@ -1,0 +1,26 @@
+<h3>Agregar </h3>
+<hr>
+<!-- RECIBIMOS EL EVENTO SUBMIT EN EL METODO AGREGAR  CON $EVENT -->
+<!-- EVENTO PERSONALIZADO PREVIENE EL REFRESH DE LA PAG -->
+<form (ngSubmit)="agregar()">   
+    <input 
+        type="text"
+        placeholder="Nombre"
+        name="nombre"
+        [(ngModel)]="nuevo.nombre"
+    />
+    <!-- LOS [] SIRVEN PARA ASIGNAR/ESCUCHAR  EL VALOR DEL TS(ONE WAY DATA BINDING)
+    LOS  () SIRVEN PARA ENVIAR EL EVENTO -->
+    <!-- [(ngModel)]="name"    ESTO ES 2 WAY DATA BINDING -->
+    <!-- [value]="nuevo.nombre"  
+    (input)="cambiarNombre($event)"  -->
+    <input 
+        type="number" 
+        placeholder="Poder"
+        name="poder" 
+        [(ngModel)]="nuevo.poder"
+    />
+    <button type="submit">
+        Agregar Poder
+    </button>    
+</form>
